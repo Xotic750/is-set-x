@@ -40,7 +40,7 @@
  * `es6.shim.js` provides compatibility shims so that legacy JavaScript engines
  * behave as closely as possible to ECMAScript 6 (Harmony).
  *
- * @version 1.0.4
+ * @version 1.0.5
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -52,7 +52,7 @@
 /*jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
   freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
   nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
-  es3:true, esnext:false, plusplus:true, maxparams:1, maxdepth:3,
+  es3:true, esnext:false, plusplus:true, maxparams:1, maxdepth:2,
   maxstatements:8, maxcomplexity:4 */
 
 /*global module */
@@ -60,24 +60,15 @@
 ;(function () {
   'use strict';
 
-  var ES = require('es-abstract/es6'),
-    isObjectLike = require('is-object-like-x'),
-    SET = typeof Set === 'function' && Set,
-    getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor,
-    getPrototypeOf = Object.getPrototypeOf,
-    getSize;
+  var isObjectLike, getSize;
 
-  if (SET) {
+  if (typeof Set === 'function') {
     try {
-      getSize = getOwnPropertyDescriptor(
-        getPrototypeOf(new SET()),
-        'size'
-      ).get;
-      if (typeof ES.Call(getSize, new SET()) !== 'number') {
-        throw 'not a number';
-      }
+      getSize = Object.getOwnPropertyDescriptor(Set.prototype, 'size').get;
+      getSize = typeof getSize.call(new Set()) === 'number' && getSize;
+      isObjectLike = require('is-object-like-x');
     } catch (ignore) {
-      SET = getSize = null;
+      getSize = null;
     }
   }
 
@@ -100,8 +91,9 @@
       return false;
     }
     try {
-      return typeof ES.Call(getSize, object) === 'number';
+      return typeof getSize.call(object) === 'number';
     } catch (ignore) {}
+
     return false;
   };
 }());
