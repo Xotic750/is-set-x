@@ -1,17 +1,21 @@
-/*jslint maxlen:80, es6:false, white:true */
+/* jslint maxlen:80, es6:true, white:true */
 
-/*jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
-  freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
-  nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
-  es3:true, esnext:false, plusplus:true, maxparams:1, maxdepth:3,
-  maxstatements:19, maxcomplexity:7 */
+/* jshint bitwise:true, camelcase:true, curly:true, eqeqeq:true, forin:true,
+   freeze:true, futurehostile:true, latedef:true, newcap:true, nocomma:true,
+   nonbsp:true, singleGroups:true, strict:true, undef:true, unused:true,
+   es3:false, esnext:true, plusplus:true, maxparams:1, maxdepth:2,
+   maxstatements:12, maxcomplexity:4 */
 
-/*global JSON:true, expect, module, require, describe, xit, it, returnExports */
+/* eslint strict: 1, max-lines: 1, symbol-description: 1, max-nested-callbacks: 1,
+   max-statements: 1 */
 
-(function () {
+/* global JSON:true, expect, module, require, describe, xit, it, returnExports */
+
+;(function () { // eslint-disable-line no-extra-semi
+
   'use strict';
 
-  var isSet, hasSet, ifHasSet, getSize;
+  var isSet;
   if (typeof module === 'object' && module.exports) {
     require('es5-shim');
     require('es5-shim/es5-sham');
@@ -20,27 +24,34 @@
     }
     require('json3').runInContext(null, JSON);
     require('es6-shim');
+    var es7 = require('es7-shim');
+    Object.keys(es7).forEach(function (key) {
+      var obj = es7[key];
+      if (typeof obj.shim === 'function') {
+        obj.shim();
+      }
+    });
     isSet = require('../../index.js');
   } else {
     isSet = returnExports;
   }
 
-  hasSet = typeof DataView === 'function';
+  var hasSet = typeof Set === 'function';
   if (hasSet) {
     try {
-      getSize = Object.getOwnPropertyDescriptor(
+      var getSize = Object.getOwnPropertyDescriptor(
         Object.getPrototypeOf(new Set()),
         'size'
       ).get;
       if (typeof getSize.call(new Set()) !== 'number') {
-        throw 'not a number';
+        throw new TypeError('not a number');
       }
     } catch (ignore) {
       hasSet = false;
     }
   }
 
-  ifHasSet = hasSet ? it : xit;
+  var ifHasSet = hasSet ? it : xit;
 
   describe('isSet', function () {
     it('basic', function () {
