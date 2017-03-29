@@ -23,7 +23,7 @@
  *
  * Detect whether or not an object is an ES6 SET.
  *
- * @version 1.1.1
+ * @version 1.2.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
