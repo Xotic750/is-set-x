@@ -1,30 +1,29 @@
-<a name="module_is-set-x"></a>
-
-## is-set-x
 <a href="https://travis-ci.org/Xotic750/is-set-x"
-title="Travis status">
-<img src="https://travis-ci.org/Xotic750/is-set-x.svg?branch=master"
-alt="Travis status" height="18">
+   title="Travis status">
+<img
+   src="https://travis-ci.org/Xotic750/is-set-x.svg?branch=master"
+   alt="Travis status" height="18"/>
 </a>
 <a href="https://david-dm.org/Xotic750/is-set-x"
-title="Dependency status">
+   title="Dependency status">
 <img src="https://david-dm.org/Xotic750/is-set-x.svg"
-alt="Dependency status" height="18"/>
+   alt="Dependency status" height="18"/>
 </a>
-<a
-href="https://david-dm.org/Xotic750/is-set-x#info=devDependencies"
-title="devDependency status">
+<a href="https://david-dm.org/Xotic750/is-set-x#info=devDependencies"
+   title="devDependency status">
 <img src="https://david-dm.org/Xotic750/is-set-x/dev-status.svg"
-alt="devDependency status" height="18"/>
+   alt="devDependency status" height="18"/>
 </a>
 <a href="https://badge.fury.io/js/is-set-x" title="npm version">
 <img src="https://badge.fury.io/js/is-set-x.svg"
-alt="npm version" height="18">
+   alt="npm version" height="18"/>
 </a>
+<a name="module_is-set-x"></a>
 
+## is-set-x
 Detect whether or not an object is an ES6 SET.
 
-**Version**: 1.2.0  
+**Version**: 1.3.0  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
@@ -35,7 +34,7 @@ Determine if an `object` is a `Set`.
 
 **Kind**: Exported function  
 **Returns**: <code>boolean</code> - `true` if the `object` is a `Set`,
- else false`  
+ else false`.  
 
 | Param | Type | Description |
 | --- | --- | --- |
