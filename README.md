@@ -23,7 +23,7 @@
 ## is-set-x
 Detect whether or not an object is an ES6 SET.
 
-**Version**: 1.3.0  
+**Version**: 1.4.0  
 **Author**: Xotic750 <Xotic750@gmail.com>  
 **License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
 **Copyright**: Xotic750  
@@ -34,7 +34,7 @@ Determine if an `object` is a `Set`.
 
 **Kind**: Exported function  
 **Returns**: <code>boolean</code> - `true` if the `object` is a `Set`,
- else false`.  
+ else `false`.  
 
 | Param | Type | Description |
 | --- | --- | --- |

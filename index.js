@@ -1,6 +1,6 @@
 /**
  * @file Detect whether or not an object is an ES6 SET.
- * @version 1.3.0
+ * @version 1.4.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -14,9 +14,9 @@ var getSize;
 
 if (typeof Set === 'function') {
   try {
-    getSize = Object.getOwnPropertyDescriptor(Set.prototype, 'size').get;
-    getSize = typeof getSize.call(new Set()) === 'number' && getSize;
-    isObjectLike = require('is-object-like-x');
+    var size = Object.getOwnPropertyDescriptor(Set.prototype, 'size').get;
+    getSize = typeof size.call(new Set()) === 'number' && size;
+    isObjectLike = size && require('is-object-like-x');
   } catch (ignore) {}
 }
 
@@ -25,7 +25,7 @@ if (typeof Set === 'function') {
  *
  * @param {*} object - The object to test.
  * @returns {boolean} `true` if the `object` is a `Set`,
- *  else false`.
+ *  else `false`.
  * @example
  * var isSet = require('is-set-x');
  * var s = new Set();
