@@ -51,7 +51,7 @@
   "dependencies": {
     "attempt-x": "^2.0.2",
     "is-falsey-x": "^2.0.4",
-    "is-length-x": "^2.2.0",
+    "is-length-x": "^3.0.0",
     "is-object-like-x": "^2.0.3",
     "object-get-own-property-descriptor-x": "^3.2.0"
   },
