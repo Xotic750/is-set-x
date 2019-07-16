@@ -7,7 +7,7 @@
  * @module is-set-x
  */
 
-const isFalsey = require('is-falsey-x');
+import isFalsey from 'is-falsey-x';
 
 let attempt;
 let isObjectLike;
@@ -49,7 +49,7 @@ if (typeof Set === 'function') {
  * isSet(true); // false
  * isSet(s); // true
  */
-module.exports = function isSet(object) {
+export default function isSet(object) {
   if (isFalsey(getSize) || isObjectLike(object) === false) {
     return false;
   }
@@ -57,4 +57,4 @@ module.exports = function isSet(object) {
   const result = attempt.call(object, getSize);
 
   return result.threw === false && isLength(result.value);
-};
+}

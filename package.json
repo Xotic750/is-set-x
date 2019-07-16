@@ -50,10 +50,10 @@
   },
   "dependencies": {
     "attempt-x": "^2.0.5",
-    "is-falsey-x": "^2.0.7",
-    "is-length-x": "^3.0.5",
-    "is-object-like-x": "^2.0.7",
-    "object-get-own-property-descriptor-x": "^4.0.2"
+    "is-falsey-x": "^2.0.8",
+    "is-length-x": "^3.0.6",
+    "is-object-like-x": "^2.0.8",
+    "object-get-own-property-descriptor-x": "^4.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
