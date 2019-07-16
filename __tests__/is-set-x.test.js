@@ -41,9 +41,7 @@ const ifHasSet = hasSet ? it : xit;
 
 describe('isSet', function() {
   it('basic', function() {
-    expect.assertions(1);
-    expect.assertions(1);
-    expect(isSet()).toBe(false);
+    expect.assertions(1) / expect(isSet()).toBe(false);
     expect(isSet(undefined)).toBe(false);
     expect(isSet(null)).toBe(false);
     expect(isSet(1)).toBe(false);
