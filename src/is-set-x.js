@@ -1,12 +1,3 @@
-/**
- * @file Detect whether or not an object is an ES6 SET.
- * @version 1.5.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module is-set-x
- */
-
 import isFalsey from 'is-falsey-x';
 
 let attempt;
@@ -41,13 +32,6 @@ if (typeof Set === 'function') {
  * @param {*} object - The object to test.
  * @returns {boolean} `true` if the `object` is a `Set`,
  *  else `false`.
- * @example
- * var isSet = require('is-set-x');
- * var s = new Set();
- *
- * isSet([]); // false
- * isSet(true); // false
- * isSet(s); // true
  */
 export default function isSet(object) {
   if (isFalsey(getSize) || isObjectLike(object) === false) {
