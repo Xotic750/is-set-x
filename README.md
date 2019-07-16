@@ -21,31 +21,31 @@
 <a name="module_is-set-x"></a>
 
 ## is-set-x
+
 Detect whether or not an object is an ES6 SET.
 
-**Version**: 1.5.0  
-**Author**: Xotic750 <Xotic750@gmail.com>  
-**License**: [MIT](&lt;https://opensource.org/licenses/MIT&gt;)  
-**Copyright**: Xotic750  
 <a name="exp_module_is-set-x--module.exports"></a>
 
 ### `module.exports(object)` ⇒ <code>boolean</code> ⏏
+
 Determine if an `object` is a `Set`.
 
 **Kind**: Exported function  
 **Returns**: <code>boolean</code> - `true` if the `object` is a `Set`,
- else `false`.  
+else `false`.
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param  | Type            | Description         |
+| ------ | --------------- | ------------------- |
 | object | <code>\*</code> | The object to test. |
 
-**Example**  
-```js
-var isSet = require('is-set-x');
-var s = new Set();
+**Example**
 
-isSet([]); // false
-isSet(true); // false
-isSet(s); // true
+```js
+import isSet from 'is-set-x';
+
+const s = new Set();
+
+console.log(isSet([])); // false
+console.log(isSet(true)); // false
+console.log(isSet(s)); // true
 ```

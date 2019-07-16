@@ -1,4 +1,4 @@
-let isSet;
+import isSet from '../src/is-set-x';
 
 let hasSet = typeof Set === 'function';
 
@@ -7,6 +7,7 @@ if (hasSet) {
     const getSize = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(new Set()), 'size').get;
 
     if (typeof getSize.call(new Set()) !== 'number') {
+      // noinspection ExceptionCaughtLocallyJS
       throw new TypeError('not a number');
     }
   } catch (ignore) {
@@ -18,7 +19,7 @@ const ifHasSet = hasSet ? it : xit;
 
 describe('isSet', function() {
   it('basic', function() {
-    expect.assertions(1) / expect(isSet()).toBe(false);
+    expect.assertions(7);
     expect(isSet(undefined)).toBe(false);
     expect(isSet(null)).toBe(false);
     expect(isSet(1)).toBe(false);
@@ -29,6 +30,7 @@ describe('isSet', function() {
   });
 
   ifHasSet('hasSet', function() {
+    expect.assertions(1);
     expect(isSet(new Set())).toBe(true);
   });
 });
