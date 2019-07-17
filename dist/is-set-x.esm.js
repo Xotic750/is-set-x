@@ -41,13 +41,15 @@ if (typeof Set === 'function') {
  */
 
 
-export default function isSet(object) {
+var isSet = function isSet(object) {
   if (castBoolean(getSize) === false || isObjectLike(object) === false) {
     return false;
   }
 
   var result = attempt.call(object, getSize);
   return result.threw === false && isLength(result.value);
-}
+};
+
+export default isSet;
 
 //# sourceMappingURL=is-set-x.esm.js.map

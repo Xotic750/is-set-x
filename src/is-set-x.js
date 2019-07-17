@@ -35,7 +35,7 @@ if (typeof Set === 'function') {
  * @returns {boolean} `true` if the `object` is a `Set`,
  *  else `false`.
  */
-export default function isSet(object) {
+const isSet = function isSet(object) {
   if (castBoolean(getSize) === false || isObjectLike(object) === false) {
     return false;
   }
@@ -43,4 +43,6 @@ export default function isSet(object) {
   const result = attempt.call(object, getSize);
 
   return result.threw === false && isLength(result.value);
-}
+};
+
+export default isSet;
