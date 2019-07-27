@@ -3,30 +3,36 @@ import attempt from 'attempt-x';
 import isObjectLike from 'is-object-like-x';
 import isLength from 'is-length-x';
 
-/** @type {BooleanConstructor} */
-const castBoolean = true.constructor;
+const test1 = function test1() {
+  return attempt(function createSet() {
+    /* eslint-disable-next-line compat/compat */
+    return new Set();
+  });
+};
 
-let getSize;
+const getGetter = function getGetter() {
+  if (typeof Set === 'function') {
+    /* eslint-disable-next-line compat/compat */
+    const descriptor = gOPD(Set.prototype, 'size');
 
-if (typeof Set === 'function') {
-  /* eslint-disable-next-line compat/compat */
-  const descriptor = gOPD(Set.prototype, 'size');
+    if (descriptor && typeof descriptor.get === 'function') {
+      const resTest1 = test1();
 
-  if (descriptor && typeof descriptor.get === 'function') {
-    let res = attempt(() => {
-      /* eslint-disable-next-line compat/compat */
-      return new Set();
-    });
+      if (resTest1.threw === false && isObjectLike(resTest1.value)) {
+        const res = attempt.call(resTest1.value, descriptor.get);
 
-    if (res.threw === false && isObjectLike(res.value)) {
-      res = attempt.call(res.value, descriptor.get);
-
-      if (res.threw === false && isLength(res.value)) {
-        getSize = descriptor.get;
+        if (res.threw === false && isLength(res.value)) {
+          return descriptor.get;
+        }
       }
     }
   }
-}
+
+  /* eslint-disable-next-line no-void */
+  return void 0;
+};
+
+const getSize = getGetter();
 
 /**
  * Determine if an `object` is a `Set`.
@@ -36,7 +42,7 @@ if (typeof Set === 'function') {
  *  else `false`.
  */
 const isSet = function isSet(object) {
-  if (castBoolean(getSize) === false || isObjectLike(object) === false) {
+  if (!getSize || isObjectLike(object) === false) {
     return false;
   }
 

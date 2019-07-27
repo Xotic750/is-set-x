@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-27T09:10:53.622Z",
+  "date": "2019-07-27T15:05:10.848Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 SET.",
   "file": "is-set-x.js",
-  "hash": "eb7528fccfe137fa37cc",
+  "hash": "047658caedd04101df96",
   "license": "MIT",
-  "version": "2.0.11"
+  "version": "2.0.12"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1374,8 +1374,6 @@ var binaryRadix = 2;
 var octalRadix = 8;
 var testCharsCount = 2;
 var to_number_x_esm_ERROR_MESSAGE = 'Cannot convert a Symbol value to a number';
-/** @type {NumberConstructor} */
-
 var to_number_x_esm_castNumber = testCharsCount.constructor;
 var pStrSlice = to_number_x_esm_ERROR_MESSAGE.slice;
 var binaryRegex = /^0b[01]+$/i;
@@ -1708,8 +1706,8 @@ if (nativeGOPD) {
   var getOPDWorksOnDom = doc ? object_get_own_property_descriptor_x_esm_doesGOPDWork(doc.createElement('div'), 'sentinel') : true;
 
   if (getOPDWorksOnDom) {
-    var res = attempt_x_esm(nativeGOPD, object_get_own_property_descriptor_x_esm_castObject('abc'), 1);
-    var worksWithStr = res.threw === false && res.value && res.value.value === 'b';
+    var object_get_own_property_descriptor_x_esm_res = attempt_x_esm(nativeGOPD, object_get_own_property_descriptor_x_esm_castObject('abc'), 1);
+    var worksWithStr = object_get_own_property_descriptor_x_esm_res.threw === false && object_get_own_property_descriptor_x_esm_res.value && object_get_own_property_descriptor_x_esm_res.value.value === 'b';
 
     if (worksWithStr) {
       var getOPDWorksOnObject = object_get_own_property_descriptor_x_esm_doesGOPDWork({}, 'sentinel');
@@ -1946,40 +1944,42 @@ var is_length_x_esm_isLength = function isLength(value) {
 
 
 // CONCATENATED MODULE: ./dist/is-set-x.esm.js
-var is_set_x_esm_this = undefined;
-
-function is_set_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
 
 
 
 
-/** @type {BooleanConstructor} */
+var is_set_x_esm_test1 = function test1() {
+  return attempt_x_esm(function createSet() {
+    /* eslint-disable-next-line compat/compat */
+    return new Set();
+  });
+};
 
-var is_set_x_esm_castBoolean = true.constructor;
-var getSize;
+var is_set_x_esm_getGetter = function getGetter() {
+  if (typeof Set === 'function') {
+    /* eslint-disable-next-line compat/compat */
+    var descriptor = object_get_own_property_descriptor_x_esm(Set.prototype, 'size');
 
-if (typeof Set === 'function') {
-  /* eslint-disable-next-line compat/compat */
-  var is_set_x_esm_descriptor = object_get_own_property_descriptor_x_esm(Set.prototype, 'size');
+    if (descriptor && typeof descriptor.get === 'function') {
+      var resTest1 = is_set_x_esm_test1();
 
-  if (is_set_x_esm_descriptor && typeof is_set_x_esm_descriptor.get === 'function') {
-    var is_set_x_esm_res = attempt_x_esm(function () {
-      is_set_x_esm_newArrowCheck(this, is_set_x_esm_this);
+      if (resTest1.threw === false && is_object_like_x_esm(resTest1.value)) {
+        var res = attempt_x_esm.call(resTest1.value, descriptor.get);
 
-      /* eslint-disable-next-line compat/compat */
-      return new Set();
-    }.bind(undefined));
-
-    if (is_set_x_esm_res.threw === false && is_object_like_x_esm(is_set_x_esm_res.value)) {
-      is_set_x_esm_res = attempt_x_esm.call(is_set_x_esm_res.value, is_set_x_esm_descriptor.get);
-
-      if (is_set_x_esm_res.threw === false && is_length_x_esm(is_set_x_esm_res.value)) {
-        getSize = is_set_x_esm_descriptor.get;
+        if (res.threw === false && is_length_x_esm(res.value)) {
+          return descriptor.get;
+        }
       }
     }
   }
-}
+  /* eslint-disable-next-line no-void */
+
+
+  return void 0;
+};
+
+var getSize = is_set_x_esm_getGetter();
 /**
  * Determine if an `object` is a `Set`.
  *
@@ -1988,9 +1988,8 @@ if (typeof Set === 'function') {
  *  else `false`.
  */
 
-
 var is_set_x_esm_isSet = function isSet(object) {
-  if (is_set_x_esm_castBoolean(getSize) === false || is_object_like_x_esm(object) === false) {
+  if (!getSize || is_object_like_x_esm(object) === false) {
     return false;
   }
 
