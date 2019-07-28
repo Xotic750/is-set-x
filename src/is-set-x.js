@@ -10,26 +10,35 @@ const test1 = function test1() {
   });
 };
 
+const getFromDescriptor = function getFromDescriptor(descriptor) {
+  const resTest1 = test1();
+
+  if (resTest1.threw === false && isObjectLike(resTest1.value)) {
+    const res = attempt.call(resTest1.value, descriptor.get);
+
+    if (res.threw === false && isLength(res.value)) {
+      return descriptor.get;
+    }
+  }
+
+  return null;
+};
+
 const getGetter = function getGetter() {
   if (typeof Set === 'function') {
     /* eslint-disable-next-line compat/compat */
     const descriptor = gOPD(Set.prototype, 'size');
 
     if (descriptor && typeof descriptor.get === 'function') {
-      const resTest1 = test1();
+      const getter = getFromDescriptor(descriptor);
 
-      if (resTest1.threw === false && isObjectLike(resTest1.value)) {
-        const res = attempt.call(resTest1.value, descriptor.get);
-
-        if (res.threw === false && isLength(res.value)) {
-          return descriptor.get;
-        }
+      if (getter !== null) {
+        return getter;
       }
     }
   }
 
-  /* eslint-disable-next-line no-void */
-  return void 0;
+  return null;
 };
 
 const getSize = getGetter();
@@ -42,7 +51,7 @@ const getSize = getGetter();
  *  else `false`.
  */
 const isSet = function isSet(object) {
-  if (!getSize || isObjectLike(object) === false) {
+  if (getSize === null || isObjectLike(object) === false) {
     return false;
   }
 
