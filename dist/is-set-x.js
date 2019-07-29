@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-07-27T22:03:00.569Z",
+  "date": "2019-07-29T19:50:26.397Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 SET.",
   "file": "is-set-x.js",
-  "hash": "047658caedd04101df96",
+  "hash": "60990e2f7d5ae10a668d",
   "license": "MIT",
   "version": "2.0.12"
 }
@@ -1956,27 +1956,35 @@ var is_set_x_esm_test1 = function test1() {
   });
 };
 
+var is_set_x_esm_getFromDescriptor = function getFromDescriptor(descriptor) {
+  var resTest1 = is_set_x_esm_test1();
+
+  if (resTest1.threw === false && is_object_like_x_esm(resTest1.value)) {
+    var res = attempt_x_esm.call(resTest1.value, descriptor.get);
+
+    if (res.threw === false && is_length_x_esm(res.value)) {
+      return descriptor.get;
+    }
+  }
+
+  return null;
+};
+
 var is_set_x_esm_getGetter = function getGetter() {
   if (typeof Set === 'function') {
     /* eslint-disable-next-line compat/compat */
     var descriptor = object_get_own_property_descriptor_x_esm(Set.prototype, 'size');
 
     if (descriptor && typeof descriptor.get === 'function') {
-      var resTest1 = is_set_x_esm_test1();
+      var getter = is_set_x_esm_getFromDescriptor(descriptor);
 
-      if (resTest1.threw === false && is_object_like_x_esm(resTest1.value)) {
-        var res = attempt_x_esm.call(resTest1.value, descriptor.get);
-
-        if (res.threw === false && is_length_x_esm(res.value)) {
-          return descriptor.get;
-        }
+      if (getter !== null) {
+        return getter;
       }
     }
   }
-  /* eslint-disable-next-line no-void */
 
-
-  return void 0;
+  return null;
 };
 
 var getSize = is_set_x_esm_getGetter();
@@ -1989,7 +1997,7 @@ var getSize = is_set_x_esm_getGetter();
  */
 
 var is_set_x_esm_isSet = function isSet(object) {
-  if (!getSize || is_object_like_x_esm(object) === false) {
+  if (getSize === null || is_object_like_x_esm(object) === false) {
     return false;
   }
 
