@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-08-04T20:49:05.626Z",
+  "date": "2019-08-05T10:48:19.857Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 SET.",
   "file": "is-set-x.js",
   "hash": "b0f81294ca6db1bb3f53",
   "license": "MIT",
-  "version": "2.0.13"
+  "version": "2.0.14"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
