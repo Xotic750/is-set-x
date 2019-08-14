@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-08-13T15:36:41.257Z",
+  "date": "2019-08-14T15:48:42.551Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 SET.",
   "file": "is-set-x.js",
-  "hash": "8696fc4b7d49dbc8dc0b",
+  "hash": "8b2296b6b77b7e399f1f",
   "license": "MIT",
-  "version": "2.0.15"
+  "version": "2.1.0"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1354,7 +1354,8 @@ var toStringSymbolsSupported = function toStringSymbolsSupported(value) {
  *
  * @type number
  */
-/* harmony default export */ var nan_x_esm = (0 / 0);
+var constantNAN = 0 / 0;
+/* harmony default export */ var nan_x_esm = (constantNAN);
 
 
 // CONCATENATED MODULE: ./node_modules/parse-int-x/dist/parse-int-x.esm.js
@@ -1533,7 +1534,8 @@ var is_nan_x_esm_isNaN = function isNaN(value) {
  *
  * @type number
  */
-/* harmony default export */ var infinity_x_esm = (1 / 0);
+var constantInfinity = 1 / 0;
+/* harmony default export */ var infinity_x_esm = (constantInfinity);
 
 
 // CONCATENATED MODULE: ./node_modules/is-finite-x/dist/is-finite-x.esm.js
