@@ -1,47 +1,15 @@
-import gOPD from 'object-get-own-property-descriptor-x';
 import attempt from 'attempt-x';
 import isObjectLike from 'is-object-like-x';
 import isLength from 'is-length-x';
+import call from 'simple-call-x';
+import getGetter from 'util-get-getter-x';
 
-const test1 = function test1() {
-  return attempt(function createSet() {
-    /* eslint-disable-next-line compat/compat */
-    return new Set();
-  });
+const creator = function creator() {
+  /* eslint-disable-next-line compat/compat */
+  return new Set();
 };
 
-const getFromDescriptor = function getFromDescriptor(descriptor) {
-  const resTest1 = test1();
-
-  if (resTest1.threw === false && isObjectLike(resTest1.value)) {
-    const res = attempt.call(resTest1.value, descriptor.get);
-
-    if (res.threw === false && isLength(res.value)) {
-      return descriptor.get;
-    }
-  }
-
-  return null;
-};
-
-const getGetter = function getGetter() {
-  if (typeof Set === 'function') {
-    /* eslint-disable-next-line compat/compat */
-    const descriptor = gOPD(Set.prototype, 'size');
-
-    if (descriptor && typeof descriptor.get === 'function') {
-      const getter = getFromDescriptor(descriptor);
-
-      if (getter !== null) {
-        return getter;
-      }
-    }
-  }
-
-  return null;
-};
-
-const getSize = getGetter();
+const getSize = getGetter(creator, 'size', isLength);
 
 /**
  * Determine if an `object` is a `Set`.
@@ -55,7 +23,9 @@ const isSet = function isSet(object) {
     return false;
   }
 
-  const result = attempt.call(object, getSize);
+  const result = attempt(function attemptee() {
+    return call(getSize, object);
+  });
 
   return result.threw === false && isLength(result.value);
 };
