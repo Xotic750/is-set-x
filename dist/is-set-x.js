@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2015-2017",
-  "date": "2019-08-18T19:08:32.735Z",
+  "date": "2019-08-20T10:11:05.112Z",
   "describe": "",
   "description": "Detect whether or not an object is an ES6 SET.",
   "file": "is-set-x.js",
